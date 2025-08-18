@@ -37,12 +37,12 @@ function Table({
   const totalPages = Math.ceil(totalItems / pageSize);
 
   return (
-    <div className="overflow-x-auto w-full">
-      <table className="min-w-full border border-gray-300">
+    <div className=" w-full">
+      <table className="w-full border border-gray-300">
         <thead>
           <tr className="bg-violet-400">
             {isCheckbox && (
-              <th className="p-2 border">
+              <th>
                 <input
                   type="checkbox"
                   checked={
@@ -54,12 +54,13 @@ function Table({
               </th>
             )}
             {columns.map((col) => (
-              <th key={col.key} className="p-2 border text-left">
+              <th key={col.key} className="p-2 border text-center">
                 {col.label}
               </th>
             ))}
           </tr>
         </thead>
+
         <tbody>
           {data.length === 0 ? (
             <tr>
@@ -74,7 +75,7 @@ function Table({
             data.map((row) => (
               <tr key={row.id} className="hover:bg-violet-300">
                 {isCheckbox && (
-                  <td className="p-2 border">
+                  <td className="p-2 border text-center">
                     <input
                       type="checkbox"
                       checked={selectedIds.includes(row.id)}
@@ -83,7 +84,7 @@ function Table({
                   </td>
                 )}
                 {columns.map((col) => (
-                  <td key={col.key} className="p-2 border">
+                  <td key={col.key} className="p-2 border text-center">
                     {col.render ? col.render(row[col.key], row) : row[col.key]}
                   </td>
                 ))}
@@ -97,7 +98,7 @@ function Table({
         <div>
           <label className="mr-2">Hiển thị:</label>
           <select
-            className="border px-2 py-1"
+            className="border px-2 py-1 bg-zinc-600"
             value={pageSize}
             onChange={(e) => onPageSizeChange(Number(e.target.value))}
           >
@@ -116,7 +117,7 @@ function Table({
               className={`px-3 py-1 border ${
                 currentPage === index + 1
                   ? "bg-blue-500 text-white"
-                  : "bg-white"
+                  : "bg-zinc-600"
               }`}
               onClick={() => onPaging(index + 1)}
             >
